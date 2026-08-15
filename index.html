@@ -7,9 +7,9 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>Licorera Central</title>
-  <link rel="manifest" href="manifest.json?v=1.6">
-  <link rel="icon" href="icon-192.png?v=1.6" sizes="192x192">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.6">
+  <link rel="manifest" href="manifest.json?v=1.7">
+  <link rel="icon" href="icon-192.png?v=1.7" sizes="192x192">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1.7">
 
   <style>
     :root{
@@ -295,7 +295,7 @@
         <div><strong data-brand-name>Licorera Central</strong><small data-brand-slogan>Tu momento, tu elección</small></div>
       </div>
       <div class="header-actions">
-        <span class="version-badge">v1.6</span>
+        <span class="version-badge">v1.7</span>
         <a class="wa-mini" data-wa-general href="#" target="_blank">WhatsApp</a>
       </div>
     </div>
@@ -326,7 +326,7 @@
       </div>
     </section>
 
-    <div class="version">Licorera PWA Base · v1.6</div>
+    <div class="version">Licorera PWA Base · v1.7</div>
   </main>
 
   <section id="catalogView" class="hidden">
@@ -337,7 +337,7 @@
     </div>
     <div class="chips" id="categoryChips"></div>
     <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico · imágenes desde biblioteca común</div>
-    <div class="version">Licorera PWA Base · v1.6</div>
+    <div class="version">Licorera PWA Base · v1.7</div>
   </section>
 
 
@@ -389,7 +389,7 @@
       </div>
     </div>
 
-    <div class="version">Licorera PWA Base · v1.6</div>
+    <div class="version">Licorera PWA Base · v1.7</div>
   </section>
 
   <nav>
@@ -432,7 +432,7 @@
 
   async function loadConfig(){
     try{
-      const response = await fetch('./config.json?v=1.6', { cache: 'no-store' });
+      const response = await fetch('./config.json?v=1.7', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar config.json');
       APP_CONFIG = await response.json();
       applyConfig();
@@ -493,7 +493,7 @@
 
   async function loadProducts(){
     try{
-      const response = await fetch('./productos.json?v=1.6', { cache: 'no-store' });
+      const response = await fetch('./productos.json?v=1.7', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar productos.json');
 
       const data = await response.json();
@@ -765,7 +765,7 @@
 
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-      navigator.serviceWorker.register('./sw.js?v=1.6').catch(console.error);
+      navigator.serviceWorker.register('./sw.js?v=1.7').catch(console.error);
     });
   }
 
