@@ -70,8 +70,8 @@
     .info{background:var(--surface);border:1px solid var(--border);border-radius:17px;padding:16px}
     .info .icon{font-size:24px}.info strong{display:block;margin:8px 0 4px;font-size:14px}.info span{color:var(--muted);font-size:12px;line-height:1.4}
 
-    nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#121212;border-top:1px solid var(--border);padding:7px 10px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(4,1fr)}
-    nav button,nav a{background:none;border:0;color:#8d8982;text-decoration:none;text-align:center;font-size:11px;padding:5px}
+    nav{position:fixed;bottom:0;left:0;right:0;z-index:30;background:#121212;border-top:1px solid var(--border);padding:7px 6px calc(7px + env(safe-area-inset-bottom));display:grid;grid-template-columns:repeat(5,1fr)}
+    nav button,nav a{background:none;border:0;color:#8d8982;text-decoration:none;text-align:center;font-size:10px;padding:5px 2px;cursor:pointer}
     nav .ico{display:block;font-size:21px;margin-bottom:2px}nav .active{color:var(--gold2)}
     .version{text-align:center;color:#5f5b55;font-size:10px;margin:20px 0 5px}
 
@@ -157,15 +157,15 @@
       border-color:#5b441d;
       box-shadow:0 0 0 1px rgba(224,173,70,.10),0 26px 80px rgba(0,0,0,.65);
     }
-    .logo-main{width:205px;max-width:82%;display:block;margin:0 auto 2px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45));border-radius:20px}
+    .logo-main{width:180px;max-width:72%;display:block;margin:0 auto 8px;filter:drop-shadow(0 10px 28px rgba(0,0,0,.45));border-radius:18px;background:#090909}
     .brand-lockup{margin-top:-8px}
     .brand-lockup small{display:block;color:#c7ab73;font-size:10px;letter-spacing:2.2px;text-transform:uppercase;margin-top:5px}
     .age18{border:2px solid var(--gold);width:92px;height:92px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:20px auto 10px;font-size:34px;background:radial-gradient(circle,#241b0d,#0a0a0a 74%)}
     .privacy-note{font-size:12px;color:#aaa49a;margin:-10px 0 20px}
     .secondary{border-color:#a92727;color:#dedede}
     .secondary:hover{border-color:#d83434}
-    .mini-logo{width:56px;height:56px;border:none;overflow:hidden;background:#050505}
-    .mini-logo img{width:100%;height:100%;object-fit:cover;transform:scale(1.25)}
+    .mini-logo{width:52px;height:52px;border:none;overflow:hidden;background:#050505;border-radius:14px;flex:0 0 52px}
+    .mini-logo img{width:100%;height:100%;object-fit:contain;transform:none;padding:2px}
     .hero{
       min-height:390px;
       background:
@@ -291,9 +291,8 @@
         <div><strong data-brand-name>Licorera Central</strong><small data-brand-slogan>Tu momento, tu elección</small></div>
       </div>
       <div class="header-actions">
-        <span class="version-badge">v1.4</span>
+        <span class="version-badge">v1.5</span>
         <a class="wa-mini" data-wa-general href="#" target="_blank">WhatsApp</a>
-        <button class="exit-btn" onclick="logoutApp()" aria-label="Salir de la aplicación"><span>🚪</span><strong>Salir</strong></button>
       </div>
     </div>
   </header>
@@ -323,7 +322,7 @@
       </div>
     </section>
 
-    <div class="version">Licorera PWA Base · v1.4</div>
+    <div class="version">Licorera PWA Base · v1.5</div>
   </main>
 
   <section id="catalogView" class="hidden">
@@ -334,7 +333,7 @@
     </div>
     <div class="chips" id="categoryChips"></div>
     <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico · imágenes desde biblioteca común</div>
-    <div class="version">Licorera PWA Base · v1.4</div>
+    <div class="version">Licorera PWA Base · v1.5</div>
   </section>
 
 
@@ -386,7 +385,7 @@
       </div>
     </div>
 
-    <div class="version">Licorera PWA Base · v1.4</div>
+    <div class="version">Licorera PWA Base · v1.5</div>
   </section>
 
   <nav>
@@ -394,6 +393,7 @@
     <button id="navCatalog" onclick="showSection('catalog')"><span class="ico">🛍️</span>Catálogo</button>
     <button id="navOrder" onclick="showSection('order')"><span class="ico">🛒</span>Pedido</button>
     <a data-wa-general href="#" target="_blank"><span class="ico">💬</span>WhatsApp</a>
+    <button onclick="logoutApp()"><span class="ico">🚪</span>Salir</button>
   </nav>
 </div>
 
@@ -428,7 +428,7 @@
 
   async function loadConfig(){
     try{
-      const response = await fetch('./config.json?v=1.4', { cache: 'no-store' });
+      const response = await fetch('./config.json?v=1.5', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar config.json');
       APP_CONFIG = await response.json();
       applyConfig();
@@ -465,9 +465,15 @@
     if(promoText) promoText.textContent = APP_CONFIG.promoTexto || '';
 
     const logoMain = document.querySelector('.logo-main');
-    if(logoMain && APP_CONFIG.logo) logoMain.src = APP_CONFIG.logo;
+    if(logoMain && APP_CONFIG.logo){
+      logoMain.src = APP_CONFIG.logo;
+      logoMain.onerror = () => { logoMain.style.display = 'none'; };
+    }
     document.querySelectorAll('.mini-logo img').forEach(img => {
-      if(APP_CONFIG.logo) img.src = APP_CONFIG.logo;
+      if(APP_CONFIG.logo){
+        img.src = APP_CONFIG.logo;
+        img.onerror = () => { img.style.display = 'none'; };
+      }
     });
 
     const generalMsg = APP_CONFIG.mensajeGeneral || `Hola, estoy viendo el catálogo de ${name}.`;
@@ -483,7 +489,7 @@
 
   async function loadProducts(){
     try{
-      const response = await fetch('./productos.json?v=1.4', { cache: 'no-store' });
+      const response = await fetch('./productos.json?v=1.5', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar productos.json');
 
       const data = await response.json();

@@ -1,5 +1,5 @@
 {
-  "version": "1.0",
+  "version": "1.1",
   "nombre": "Licorera Central",
   "slogan": "Tu momento, tu elección",
   "whatsapp": "593997180769",
@@ -13,5 +13,5 @@
   "promoTexto": "Consulta ofertas, combos y precios especiales disponibles hoy.",
   "mensajePromos": "Hola 👋 Estoy viendo su catálogo y quisiera conocer las promociones disponibles actualmente.",
   "mensajeGeneral": "Hola, estoy viendo el catálogo de Licorera Central.",
-  "logo": "logo.png"
+  "logo": "logo.svg"
 }
