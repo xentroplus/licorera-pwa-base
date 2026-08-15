@@ -218,6 +218,15 @@
       display:block;
     }
     .image-fallback{display:none}
+    .product-image-missing{
+      width:100%;height:100%;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:8px;
+      color:#8e8679;background:
+        radial-gradient(circle at 50% 35%,rgba(217,151,54,.15),transparent 34%),
+        linear-gradient(180deg,#16130f,#0e0e0f);
+    }
+    .product-image-missing span{font-size:34px;opacity:.75}
+    .product-image-missing small{font-size:11px;font-weight:700}
 
     .bottle-art{width:72px;height:156px;position:relative;filter:drop-shadow(0 14px 14px rgba(0,0,0,.45))}
     .bottle-neck{width:24px;height:44px;margin:auto;border-radius:7px 7px 3px 3px;background:linear-gradient(90deg,#52240d,#d37a22 46%,#4a1e09);border:1px solid rgba(255,204,103,.2)}
@@ -282,7 +291,7 @@
         <div><strong>Licorera Central</strong><small>Tu momento, tu elección</small></div>
       </div>
       <div class="header-actions">
-        <span class="version-badge">v1.2</span>
+        <span class="version-badge">v1.3</span>
         <a class="wa-mini" href="https://wa.me/593997180769?text=Hola%2C%20estoy%20viendo%20el%20cat%C3%A1logo%20de%20Licorera%20Central." target="_blank">WhatsApp</a>
         <button class="exit-btn" onclick="logoutApp()" aria-label="Salir de la aplicación"><span>🚪</span><strong>Salir</strong></button>
       </div>
@@ -314,7 +323,7 @@
       </div>
     </section>
 
-    <div class="version">Licorera PWA Base · v1.2</div>
+    <div class="version">Licorera PWA Base · v1.3</div>
   </main>
 
   <section id="catalogView" class="hidden">
@@ -324,8 +333,8 @@
       <input id="catalogSearch" type="search" placeholder="Buscar whisky, cerveza, vino..." oninput="renderCatalog()">
     </div>
     <div class="chips" id="categoryChips"></div>
-    <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico cargado desde productos.json</div>
-    <div class="version">Licorera PWA Base · v1.2</div>
+    <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico · imágenes desde biblioteca común</div>
+    <div class="version">Licorera PWA Base · v1.3</div>
   </section>
 
 
@@ -377,7 +386,7 @@
       </div>
     </div>
 
-    <div class="version">Licorera PWA Base · v1.2</div>
+    <div class="version">Licorera PWA Base · v1.3</div>
   </section>
 
   <nav>
@@ -408,6 +417,7 @@
     document.querySelector('.age-card').innerHTML = ageCardOriginal;
   }
 
+  const PRODUCT_IMAGE_BASE = 'https://xentroplus.github.io/licorera-productos/';
   let demoProducts = [];
   let selectedCategory = 'Todos';
   let demoCart = {};
@@ -416,7 +426,7 @@
 
   async function loadProducts(){
     try{
-      const response = await fetch('./productos.json?v=1.2', { cache: 'no-store' });
+      const response = await fetch('./productos.json?v=1.3', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar productos.json');
 
       const data = await response.json();
@@ -430,7 +440,7 @@
         name: p.producto,
         size: p.presentacion,
         price: Number(p.precio) || 0,
-        image: p.imagen || ''
+        image: p.imagen ? PRODUCT_IMAGE_BASE + p.imagen : ''
       }));
 
       catalogLoaded = true;
@@ -503,8 +513,13 @@
       return `<article class="product-card">
         <div class="product-image">
           <span class="product-cat">${p.category}</span>
-          ${p.image ? `<img class="real-product-img" src="${p.image}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">` : ''}
-          <div class="bottle-art ${p.image ? 'image-fallback' : ''}"><div class="bottle-neck"></div><div class="bottle-body"><span>${p.category.slice(0,1)}</span></div></div>
+          ${p.image
+            ? `<img class="real-product-img" src="${p.image}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
+            : ''}
+          <div class="product-image-missing ${p.image ? 'image-fallback' : ''}">
+            <span>📷</span>
+            <small>Imagen próximamente</small>
+          </div>
         </div>
         <div class="product-body">
           <div class="product-name">${p.name}</div>
