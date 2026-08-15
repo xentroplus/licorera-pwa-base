@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "nombre": "Licorera Central",
+  "slogan": "Tu momento, tu elección",
+  "whatsapp": "593997180769",
+  "direccion": "Av. Principal y Calle Central",
+  "direccionDetalle": "Dirección demostrativa",
+  "horarioLinea1": "Lunes a domingo",
+  "horarioLinea2": "10:00 – 02:00",
+  "modalidad": "Delivery y retiro en local",
+  "heroTitulo": "Las mejores marcas para cada momento",
+  "heroTexto": "Licores, cervezas, vinos y más, a un clic de ti.",
+  "promoTexto": "Consulta ofertas, combos y precios especiales disponibles hoy.",
+  "mensajePromos": "Hola 👋 Estoy viendo su catálogo y quisiera conocer las promociones disponibles actualmente.",
+  "mensajeGeneral": "Hola, estoy viendo el catálogo de Licorera Central.",
+  "logo": "logo.png"
+}
