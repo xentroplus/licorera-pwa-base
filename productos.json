@@ -1,0 +1,254 @@
+{
+  "version": "1.0",
+  "moneda": "USD",
+  "productos": [
+    {
+      "id": 1,
+      "categoria": "Whisky",
+      "producto": "Johnnie Walker Black Label",
+      "presentacion": "750 ml",
+      "precio": 45.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/whisky/johnnie-walker-black-label-750-ml.webp"
+    },
+    {
+      "id": 2,
+      "categoria": "Whisky",
+      "producto": "Jack Daniel's Old No. 7",
+      "presentacion": "750 ml",
+      "precio": 42.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/whisky/jack-daniel-s-old-no-7-750-ml.webp"
+    },
+    {
+      "id": 3,
+      "categoria": "Whisky",
+      "producto": "Chivas Regal 12 Años",
+      "presentacion": "750 ml",
+      "precio": 48.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/whisky/chivas-regal-12-anos-750-ml.webp"
+    },
+    {
+      "id": 4,
+      "categoria": "Whisky",
+      "producto": "Johnnie Walker Red Label",
+      "presentacion": "750 ml",
+      "precio": 27.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/whisky/johnnie-walker-red-label-750-ml.webp"
+    },
+    {
+      "id": 5,
+      "categoria": "Whisky",
+      "producto": "Ballantine's Finest",
+      "presentacion": "750 ml",
+      "precio": 25.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/whisky/ballantine-s-finest-750-ml.webp"
+    },
+    {
+      "id": 6,
+      "categoria": "Ron",
+      "producto": "Bacardí Carta Oro",
+      "presentacion": "750 ml",
+      "precio": 22.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/ron/bacardi-carta-oro-750-ml.webp"
+    },
+    {
+      "id": 7,
+      "categoria": "Ron",
+      "producto": "Bacardí Carta Blanca",
+      "presentacion": "750 ml",
+      "precio": 21.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/ron/bacardi-carta-blanca-750-ml.webp"
+    },
+    {
+      "id": 8,
+      "categoria": "Ron",
+      "producto": "Havana Club Añejo Especial",
+      "presentacion": "750 ml",
+      "precio": 24.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/ron/havana-club-anejo-especial-750-ml.webp"
+    },
+    {
+      "id": 9,
+      "categoria": "Ron",
+      "producto": "Flor de Caña 7 Años",
+      "presentacion": "750 ml",
+      "precio": 29.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/ron/flor-de-cana-7-anos-750-ml.webp"
+    },
+    {
+      "id": 10,
+      "categoria": "Vodka",
+      "producto": "Absolut Vodka",
+      "presentacion": "750 ml",
+      "precio": 29.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vodka/absolut-vodka-750-ml.webp"
+    },
+    {
+      "id": 11,
+      "categoria": "Vodka",
+      "producto": "Smirnoff Red",
+      "presentacion": "750 ml",
+      "precio": 24.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vodka/smirnoff-red-750-ml.webp"
+    },
+    {
+      "id": 12,
+      "categoria": "Vodka",
+      "producto": "Grey Goose",
+      "presentacion": "750 ml",
+      "precio": 52.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vodka/grey-goose-750-ml.webp"
+    },
+    {
+      "id": 13,
+      "categoria": "Tequila",
+      "producto": "José Cuervo Especial Gold",
+      "presentacion": "750 ml",
+      "precio": 32.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/tequila/jose-cuervo-especial-gold-750-ml.webp"
+    },
+    {
+      "id": 14,
+      "categoria": "Tequila",
+      "producto": "José Cuervo Especial Silver",
+      "presentacion": "750 ml",
+      "precio": 32.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/tequila/jose-cuervo-especial-silver-750-ml.webp"
+    },
+    {
+      "id": 15,
+      "categoria": "Tequila",
+      "producto": "Olmeca Reposado",
+      "presentacion": "750 ml",
+      "precio": 35.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/tequila/olmeca-reposado-750-ml.webp"
+    },
+    {
+      "id": 16,
+      "categoria": "Cerveza",
+      "producto": "Corona Extra",
+      "presentacion": "Six Pack 330 ml",
+      "precio": 12.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/cerveza/corona-extra-six-pack-330-ml.webp"
+    },
+    {
+      "id": 17,
+      "categoria": "Cerveza",
+      "producto": "Heineken",
+      "presentacion": "Six Pack 330 ml",
+      "precio": 11.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/cerveza/heineken-six-pack-330-ml.webp"
+    },
+    {
+      "id": 18,
+      "categoria": "Cerveza",
+      "producto": "Budweiser",
+      "presentacion": "Six Pack 355 ml",
+      "precio": 10.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/cerveza/budweiser-six-pack-355-ml.webp"
+    },
+    {
+      "id": 19,
+      "categoria": "Cerveza",
+      "producto": "Stella Artois",
+      "presentacion": "Six Pack 330 ml",
+      "precio": 13.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/cerveza/stella-artois-six-pack-330-ml.webp"
+    },
+    {
+      "id": 20,
+      "categoria": "Vino",
+      "producto": "Casillero del Diablo Cabernet Sauvignon",
+      "presentacion": "750 ml",
+      "precio": 16.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vino/casillero-del-diablo-cabernet-sauvignon-750-ml.webp"
+    },
+    {
+      "id": 21,
+      "categoria": "Vino",
+      "producto": "Casillero del Diablo Merlot",
+      "presentacion": "750 ml",
+      "precio": 16.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vino/casillero-del-diablo-merlot-750-ml.webp"
+    },
+    {
+      "id": 22,
+      "categoria": "Vino",
+      "producto": "Santa Carolina Reserva Cabernet Sauvignon",
+      "presentacion": "750 ml",
+      "precio": 15.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vino/santa-carolina-reserva-cabernet-sauvignon-750-ml.webp"
+    },
+    {
+      "id": 23,
+      "categoria": "Vino",
+      "producto": "Concha y Toro Reservado Malbec",
+      "presentacion": "750 ml",
+      "precio": 12.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/vino/concha-y-toro-reservado-malbec-750-ml.webp"
+    },
+    {
+      "id": 24,
+      "categoria": "Licor",
+      "producto": "Baileys Original Irish Cream",
+      "presentacion": "750 ml",
+      "precio": 35.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/licor/baileys-original-irish-cream-750-ml.webp"
+    },
+    {
+      "id": 25,
+      "categoria": "Licor",
+      "producto": "Jägermeister",
+      "presentacion": "700 ml",
+      "precio": 34.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/licor/jagermeister-700-ml.webp"
+    },
+    {
+      "id": 26,
+      "categoria": "Licor",
+      "producto": "Amaretto Disaronno",
+      "presentacion": "700 ml",
+      "precio": 39.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/licor/amaretto-disaronno-700-ml.webp"
+    },
+    {
+      "id": 27,
+      "categoria": "Espumante",
+      "producto": "Freixenet Cordon Negro Brut",
+      "presentacion": "750 ml",
+      "precio": 22.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/espumante/freixenet-cordon-negro-brut-750-ml.webp"
+    },
+    {
+      "id": 28,
+      "categoria": "Espumante",
+      "producto": "Chandon Brut",
+      "presentacion": "750 ml",
+      "precio": 24.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/espumante/chandon-brut-750-ml.webp"
+    },
+    {
+      "id": 29,
+      "categoria": "Bebida",
+      "producto": "Coca-Cola",
+      "presentacion": "2 litros",
+      "precio": 3.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/bebida/coca-cola-2-litros.webp"
+    },
+    {
+      "id": 30,
+      "categoria": "Bebida",
+      "producto": "Agua mineral",
+      "presentacion": "1.5 litros",
+      "precio": 1.5,
+      "imagen": "https://xentroplus.github.io/licorera-productos/bebida/agua-mineral-1-5-litros.webp"
+    },
+    {
+      "id": 31,
+      "categoria": "Complemento",
+      "producto": "Hielo",
+      "presentacion": "Bolsa 2 kg",
+      "precio": 2.0,
+      "imagen": "https://xentroplus.github.io/licorera-productos/complemento/hielo-bolsa-2-kg.webp"
+    }
+  ]
+}

@@ -286,7 +286,7 @@
       </div>
     </section>
 
-    <div class="version">Licorera PWA Base · v0.9</div>
+    <div class="version">Licorera PWA Base · v1.0</div>
   </main>
 
   <section id="catalogView" class="hidden">
@@ -296,8 +296,8 @@
       <input id="catalogSearch" type="search" placeholder="Buscar whisky, cerveza, vino..." oninput="renderCatalog()">
     </div>
     <div class="chips" id="categoryChips"></div>
-    <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Demo v0.5 · Biblioteca visual de productos en construcción</div>
-    <div class="version">Licorera PWA Base · v0.9</div>
+    <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico cargado desde productos.json</div>
+    <div class="version">Licorera PWA Base · v1.0</div>
   </section>
 
 
@@ -349,7 +349,7 @@
       </div>
     </div>
 
-    <div class="version">Licorera PWA Base · v0.9</div>
+    <div class="version">Licorera PWA Base · v1.0</div>
   </section>
 
   <nav>
@@ -380,18 +380,41 @@
     document.querySelector('.age-card').innerHTML = ageCardOriginal;
   }
 
-  const demoProducts = [
-    {id:1,category:'Whisky',name:'Johnnie Walker Black',size:'750 ml',price:45.00,image:'https://xentroplus.github.io/licorera-productos/whisky/johnnie-walker-black-750ml.webp'},
-    {id:2,category:'Whisky',name:"Jack Daniel's Old No. 7",size:'750 ml',price:42.00,image:'https://xentroplus.github.io/licorera-productos/whisky/jack-daniels-old-no7-750ml.webp'},
-    {id:3,category:'Ron',name:'Bacardí Carta Oro',size:'750 ml',price:22.00,image:'https://xentroplus.github.io/licorera-productos/ron/bacardi-carta-oro-750ml.webp'},
-    {id:4,category:'Vodka',name:'Absolut Vodka',size:'750 ml',price:29.00,image:'https://xentroplus.github.io/licorera-productos/vodka/absolut-vodka-750ml.webp'},
-    {id:5,category:'Tequila',name:'José Cuervo Especial',size:'750 ml',price:32.00,image:''},
-    {id:6,category:'Cerveza',name:'Corona Extra',size:'Six Pack',price:12.00,image:'https://xentroplus.github.io/licorera-productos/cerveza/corona-extra-six-pack.webp'},
-    {id:7,category:'Vino',name:'Casillero del Diablo',size:'750 ml',price:16.50,image:'https://xentroplus.github.io/licorera-productos/vino/casillero-del-diablo-750ml.webp'},
-    {id:8,category:'Cerveza',name:'Heineken',size:'Six Pack',price:11.50,image:'https://xentroplus.github.io/licorera-productos/cerveza/heineken-six-pack.webp'}
-  ];
+  let demoProducts = [];
   let selectedCategory = 'Todos';
   let demoCart = {};
+  let catalogLoaded = false;
+  let catalogError = false;
+
+  async function loadProducts(){
+    try{
+      const response = await fetch('./productos.json?v=1.0', { cache: 'no-store' });
+      if(!response.ok) throw new Error('No se pudo cargar productos.json');
+
+      const data = await response.json();
+      if(!data.productos || !Array.isArray(data.productos)) {
+        throw new Error('Formato de productos.json no válido');
+      }
+
+      demoProducts = data.productos.map((p, index) => ({
+        id: p.id ?? (index + 1),
+        category: p.categoria,
+        name: p.producto,
+        size: p.presentacion,
+        price: Number(p.precio) || 0,
+        image: p.imagen || ''
+      }));
+
+      catalogLoaded = true;
+      catalogError = false;
+      renderCatalog();
+    }catch(error){
+      console.error(error);
+      catalogLoaded = false;
+      catalogError = true;
+      renderCatalog();
+    }
+  }
 
   function showSection(section){
     const home = document.getElementById('homeView');
@@ -419,9 +442,9 @@
   }
 
   function renderChips(){
-    const categories = ['Todos','Whisky','Ron','Vodka','Tequila','Cerveza','Vino'];
+    const categories = ['Todos', ...new Set(demoProducts.map(p => p.category).filter(Boolean))];
     document.getElementById('categoryChips').innerHTML = categories.map(c =>
-      `<button class="chip ${selectedCategory===c?'active':''}" onclick="setCategory('${c}')">${c}</button>`
+      `<button class="chip ${selectedCategory===c?'active':''}" onclick="setCategory(${JSON.stringify(c).replace(/"/g,'&quot;')})">${c}</button>`
     ).join('');
   }
 
@@ -431,13 +454,23 @@
   }
 
   function renderCatalog(){
+    const grid = document.getElementById('catalogGrid');
+
+    if(!catalogLoaded){
+      document.getElementById('categoryChips').innerHTML = '';
+      grid.innerHTML = catalogError
+        ? '<div class="empty-products"><strong>No se pudo cargar el catálogo.</strong><br><br>Verifica que <code>productos.json</code> esté en la misma carpeta que <code>index.html</code> y prueba desde GitHub Pages.</div>'
+        : '<div class="empty-products">Cargando catálogo...</div>';
+      return;
+    }
+
     renderChips();
     const q = (document.getElementById('catalogSearch').value || '').trim().toLowerCase();
     const filtered = demoProducts.filter(p =>
       (selectedCategory === 'Todos' || p.category === selectedCategory) &&
       (`${p.name} ${p.category} ${p.size}`.toLowerCase().includes(q))
     );
-    document.getElementById('catalogGrid').innerHTML = filtered.length ? filtered.map(p => {
+    grid.innerHTML = filtered.length ? filtered.map(p => {
       const qty = demoCart[p.id] || 0;
       return `<article class="product-card">
         <div class="product-image">
@@ -460,6 +493,13 @@
   function changeQty(id,delta){
     const next = Math.max(0,(demoCart[id] || 0) + delta);
     if(next === 0) delete demoCart[id]; else demoCart[id] = next;
+
+    const count = Object.values(demoCart).reduce((a,b) => a + b, 0);
+    const catalogCount = document.getElementById('catalogCartCount');
+    if(catalogCount) catalogCount.textContent = count;
+    const orderCount = document.getElementById('orderCount');
+    if(orderCount) orderCount.textContent = count;
+
     renderCatalog();
   }
 
@@ -598,6 +638,8 @@
   function comingSoon(){
     alert('Esta función se incorporará en la siguiente versión.');
   }
+
+  loadProducts();
 </script>
 </body>
 </html>
