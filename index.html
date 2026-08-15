@@ -87,8 +87,19 @@
       font-size:11px;font-weight:900;letter-spacing:.4px
     }
     .exit-btn{
-      width:36px;height:36px;border-radius:11px;border:1px solid #4a3a21;
-      background:#171717;color:#e8d29c;cursor:pointer;font-size:17px
+      height:36px;padding:0 11px;border-radius:11px;border:1px solid #5a4630;
+      background:#171717;color:#e8d29c;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:6px
+    }
+    .exit-btn span{font-size:15px}
+    .exit-btn strong{font-size:11px;letter-spacing:.2px}
+    @media(max-width:420px){
+      .header-row{gap:7px}
+      .mini-brand small{display:none}
+      .header-actions{gap:5px}
+      .wa-mini{padding:9px 9px}
+      .version-badge{min-width:34px;padding:0 6px}
+      .exit-btn{padding:0 9px}
     }
 
     /* Order / cart v0.6 */
@@ -271,9 +282,9 @@
         <div><strong>Licorera Central</strong><small>Tu momento, tu elección</small></div>
       </div>
       <div class="header-actions">
-        <span class="version-badge">v1.1</span>
+        <span class="version-badge">v1.2</span>
         <a class="wa-mini" href="https://wa.me/593997180769?text=Hola%2C%20estoy%20viendo%20el%20cat%C3%A1logo%20de%20Licorera%20Central." target="_blank">WhatsApp</a>
-        <button class="exit-btn" onclick="logoutApp()" title="Salir">🚪</button>
+        <button class="exit-btn" onclick="logoutApp()" aria-label="Salir de la aplicación"><span>🚪</span><strong>Salir</strong></button>
       </div>
     </div>
   </header>
@@ -303,7 +314,7 @@
       </div>
     </section>
 
-    <div class="version">Licorera PWA Base · v1.1</div>
+    <div class="version">Licorera PWA Base · v1.2</div>
   </main>
 
   <section id="catalogView" class="hidden">
@@ -314,7 +325,7 @@
     </div>
     <div class="chips" id="categoryChips"></div>
     <div class="catalog-grid" id="catalogGrid"></div><div class="image-note">Catálogo dinámico cargado desde productos.json</div>
-    <div class="version">Licorera PWA Base · v1.1</div>
+    <div class="version">Licorera PWA Base · v1.2</div>
   </section>
 
 
@@ -366,7 +377,7 @@
       </div>
     </div>
 
-    <div class="version">Licorera PWA Base · v1.1</div>
+    <div class="version">Licorera PWA Base · v1.2</div>
   </section>
 
   <nav>
@@ -405,7 +416,7 @@
 
   async function loadProducts(){
     try{
-      const response = await fetch('./productos.json?v=1.1', { cache: 'no-store' });
+      const response = await fetch('./productos.json?v=1.2', { cache: 'no-store' });
       if(!response.ok) throw new Error('No se pudo cargar productos.json');
 
       const data = await response.json();
